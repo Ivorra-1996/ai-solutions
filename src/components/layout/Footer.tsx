@@ -1,5 +1,8 @@
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { navLinks } from '../../config/navigation';
+import { CONTACT_EMAIL } from '../../config/contact';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -17,16 +20,19 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
-              <li><a href="/" className="text-gray-300 hover:text-accent transition-colors">{t('nav.home')}</a></li>
-              <li><a href="/services" className="text-gray-300 hover:text-accent transition-colors">{t('nav.services')}</a></li>
-              <li><a href="/projects" className="text-gray-300 hover:text-accent transition-colors">{t('nav.projects')}</a></li>
-              <li><a href="/blog" className="text-gray-300 hover:text-accent transition-colors">{t('nav.blog')}</a></li>
+              {navLinks.map(({ to, labelKey }) => (
+                <li key={to}>
+                  <Link to={to} className="text-gray-300 hover:text-accent transition-colors">
+                    {t(labelKey)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">{t('footer.contact')}</h4>
             <ul className="space-y-2 text-gray-300">
-              <li>info@aisolutions.com</li>
+              <li>{CONTACT_EMAIL}</li>
               <li>+34 900 123 456</li>
               <li>Madrid, España</li>
             </ul>

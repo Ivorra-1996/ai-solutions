@@ -54,8 +54,13 @@ export const translations = {
       email: "Email",
       message: "Mensaje",
       submit: "Enviar Mensaje",
-      success: "Mensaje enviado",
-      successDetail: "Nos pondremos en contacto contigo pronto."
+      success: "Abriendo tu cliente de correo",
+      successDetail: "Confirmá el envío desde tu aplicación de email para que nos llegue tu mensaje.",
+      errors: {
+        nameRequired: "El nombre es obligatorio",
+        emailInvalid: "Ingresá un email válido",
+        messageMin: "El mensaje debe tener al menos 10 caracteres"
+      }
     },
     footer: {
       description: "Transformando la industria con soluciones de IA innovadoras.",
@@ -63,6 +68,11 @@ export const translations = {
       contact: "Contacto",
       followUs: "Síguenos",
       rights: "Todos los derechos reservados."
+    },
+    notFound: {
+      title: "404",
+      message: "¡Ups! Página no encontrada",
+      backHome: "Volver al Inicio"
     }
   },
   en: {
@@ -120,8 +130,13 @@ export const translations = {
       email: "Email",
       message: "Message",
       submit: "Send Message",
-      success: "Message sent",
-      successDetail: "We will contact you soon."
+      success: "Opening your email app",
+      successDetail: "Confirm the send from your email app so your message reaches us.",
+      errors: {
+        nameRequired: "Name is required",
+        emailInvalid: "Enter a valid email",
+        messageMin: "Message must be at least 10 characters"
+      }
     },
     footer: {
       description: "Transforming industry with innovative AI solutions.",
@@ -129,6 +144,11 @@ export const translations = {
       contact: "Contact",
       followUs: "Follow Us",
       rights: "All rights reserved."
+    },
+    notFound: {
+      title: "404",
+      message: "Oops! Page not found",
+      backHome: "Return to Home"
     }
   }
 };

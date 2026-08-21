@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { translations } from '../utils/translations';
 import type { Language } from '../utils/translations';
 
@@ -13,12 +13,25 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguage] = useState<Language>('es');
 
-  const t = (path: string) => {
-    return path.split('.').reduce((obj, key) => obj[key], translations[language]) || path;
-  };
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const value = useMemo<LanguageContextType>(() => {
+    const t = (path: string): string => {
+      const resolved = path.split('.').reduce<unknown>((obj, key) => {
+        if (obj && typeof obj === 'object' && Object.prototype.hasOwnProperty.call(obj, key)) {
+          return (obj as Record<string, unknown>)[key];
+        }
+        return undefined;
+      }, translations[language]);
+      return typeof resolved === 'string' ? resolved : path;
+    };
+    return { language, setLanguage, t };
+  }, [language]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );

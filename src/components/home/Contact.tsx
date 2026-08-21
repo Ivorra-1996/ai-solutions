@@ -1,77 +1,105 @@
-import { useState } from 'react';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from "@/components/ui/use-toast";
 import { useLanguage } from '../../contexts/LanguageContext';
+import { CONTACT_EMAIL } from '../../config/contact';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+
+  const contactSchema = z.object({
+    name: z.string().trim().min(1, t('contact.errors.nameRequired')),
+    email: z.string().trim().email(t('contact.errors.emailInvalid')),
+    message: z.string().trim().min(10, t('contact.errors.messageMin')),
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  type ContactValues = z.infer<typeof contactSchema>;
+
+  const form = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: '', email: '', message: '' },
+  });
+
+  const onSubmit = (values: ContactValues) => {
+    const subject = `${t('contact.title')} — ${values.name}`;
+    const body = `${t('contact.name')}: ${values.name}\n${t('contact.email')}: ${values.email}\n\n${values.message}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
     toast({
       title: t('contact.success'),
       description: t('contact.successDetail'),
     });
-    setFormData({ name: '', email: '', message: '' });
+    form.reset();
   };
 
   return (
-    <div className="py-16 bg-white">
+    <div id="contact" className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8 text-primary">{t('contact.title')}</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                {t('contact.name')}
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                required
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('contact.name')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                {t('contact.email')}
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                required
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('contact.email')}</FormLabel>
+                    <FormControl>
+                      <Input type="email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                {t('contact.message')}
-              </label>
-              <textarea
-                id="message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
-                required
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('contact.message')}</FormLabel>
+                    <FormControl>
+                      <Textarea rows={4} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-accent hover:bg-accent-light text-white font-medium py-3 rounded-lg transition-colors"
-            >
-              {t('contact.submit')}
-            </button>
-          </form>
+              <Button
+                type="submit"
+                disabled={form.formState.isSubmitting}
+                className="w-full bg-accent hover:bg-accent-light text-white"
+              >
+                {t('contact.submit')}
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { navLinks } from '../../config/navigation';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,22 +21,16 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-accent transition-colors">
-              {t('nav.home')}
-            </Link>
-            <Link to="/services" className="text-gray-700 hover:text-accent transition-colors">
-              {t('nav.services')}
-            </Link>
-            <Link to="/projects" className="text-gray-700 hover:text-accent transition-colors">
-              {t('nav.projects')}
-            </Link>
-            <Link to="/blog" className="text-gray-700 hover:text-accent transition-colors">
-              {t('nav.blog')}
-            </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-accent transition-colors">
-              {t('nav.contact')}
-            </Link>
-            <button 
+            {navLinks.map(({ to, labelKey }) => (
+              <Link
+                key={to}
+                to={to}
+                className="text-gray-700 hover:text-accent transition-colors"
+              >
+                {t(labelKey)}
+              </Link>
+            ))}
+            <button
               onClick={toggleLanguage}
               className="flex items-center text-gray-700 hover:text-accent transition-colors"
             >
@@ -55,22 +50,17 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <Link to="/" className="text-gray-700 hover:text-accent transition-colors">
-                {t('nav.home')}
-              </Link>
-              <Link to="/services" className="text-gray-700 hover:text-accent transition-colors">
-                {t('nav.services')}
-              </Link>
-              <Link to="/projects" className="text-gray-700 hover:text-accent transition-colors">
-                {t('nav.projects')}
-              </Link>
-              <Link to="/blog" className="text-gray-700 hover:text-accent transition-colors">
-                {t('nav.blog')}
-              </Link>
-              <Link to="/contact" className="text-gray-700 hover:text-accent transition-colors">
-                {t('nav.contact')}
-              </Link>
-              <button 
+              {navLinks.map(({ to, labelKey }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className="text-gray-700 hover:text-accent transition-colors"
+                >
+                  {t(labelKey)}
+                </Link>
+              ))}
+              <button
                 onClick={toggleLanguage}
                 className="flex items-center text-gray-700 hover:text-accent transition-colors"
               >

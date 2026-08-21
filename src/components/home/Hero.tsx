@@ -1,15 +1,16 @@
 import { Brain, Factory, Building } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   const { t } = useLanguage();
 
   return (
     <div className="relative bg-gradient-to-br from-primary to-primary-light text-white pt-24 pb-16">
-      <div 
+      <div
         className="absolute inset-0 z-0 opacity-20"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1600&q=60)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -24,12 +25,17 @@ const Hero = () => {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-accent hover:bg-accent-light text-white px-6 py-3 rounded-lg transition-colors">
-                {t('hero.cta1')}
-              </button>
-              <button className="border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-primary transition-colors">
-                {t('hero.cta2')}
-              </button>
+              <Button asChild size="lg" className="bg-accent hover:bg-accent-light text-white">
+                <a href="#services">{t('hero.cta1')}</a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white text-white bg-transparent hover:bg-white hover:text-primary"
+              >
+                <a href="#contact">{t('hero.cta2')}</a>
+              </Button>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6 animate-fade-in">
