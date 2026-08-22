@@ -37,7 +37,7 @@ const Services = () => {
         <h2
           className={cn(
             'font-display text-3xl font-bold text-center mb-12 text-primary',
-            inView ? 'animate-fade-in' : 'opacity-0'
+            inView ? 'animate-scale-in' : 'opacity-0'
           )}
         >
           {t('services.title')}

@@ -26,7 +26,7 @@ const NotFound = () => {
         }}
       />
       <div className="relative z-10 text-center px-4">
-        <div className="relative inline-block mb-8 border border-white/20 bg-white/[0.03] px-10 py-8 sm:px-16">
+        <div className="relative inline-block mb-8 border border-white/20 bg-white/[0.03] px-10 py-8 sm:px-16 animate-scale-in">
           <span className="absolute -top-px -left-px h-4 w-4 border-t-2 border-l-2 border-accent" />
           <span className="absolute -top-px -right-px h-4 w-4 border-t-2 border-r-2 border-accent" />
           <span className="absolute -bottom-px -left-px h-4 w-4 border-b-2 border-l-2 border-accent" />

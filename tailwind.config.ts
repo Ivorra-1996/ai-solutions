@@ -85,12 +85,27 @@ export default {
         "grid-pan": {
           "0%": { backgroundPosition: "0px 0px" },
           "100%": { backgroundPosition: "48px 48px" }
+        },
+        "fade-left": {
+          "0%": { opacity: "0", transform: "translateX(-24px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" }
+        },
+        "fade-right": {
+          "0%": { opacity: "0", transform: "translateX(24px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" }
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" }
         }
       },
       animation: {
-        "fade-in": "fade-in 0.5s ease-out",
+        "fade-in": "fade-in 0.5s ease-out backwards",
         "slide-in": "slide-in 0.5s ease-out",
         "grid-pan": "grid-pan 40s linear infinite",
+        "fade-left": "fade-left 0.6s ease-out backwards",
+        "fade-right": "fade-right 0.6s ease-out backwards",
+        "scale-in": "scale-in 0.5s ease-out backwards",
       }
     }
   },

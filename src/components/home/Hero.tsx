@@ -23,7 +23,7 @@ const Hero = () => {
       />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in">
+          <div className="animate-fade-left">
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
               {t('hero.title')}
             </h1>
@@ -48,7 +48,7 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="relative animate-fade-in">
+          <div className="relative animate-fade-right" style={{ animationDelay: '150ms' }}>
             <span className="absolute -top-px -left-px h-4 w-4 border-t-2 border-l-2 border-accent" />
             <span className="absolute -top-px -right-px h-4 w-4 border-t-2 border-r-2 border-accent" />
             <span className="absolute -bottom-px -left-px h-4 w-4 border-b-2 border-l-2 border-accent" />

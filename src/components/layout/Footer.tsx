@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { navLinks } from '../../config/navigation';
 import { CONTACT_EMAIL } from '../../config/contact';
+import { useInView } from '@/hooks/use-in-view';
+import { cn } from '@/lib/utils';
 
 const Footer = () => {
   const { t } = useLanguage();
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
     <footer className="bg-primary text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div ref={ref} className="container mx-auto px-4 py-12">
+        <div className={cn('grid md:grid-cols-4 gap-8', inView ? 'animate-fade-in' : 'opacity-0')}>
           <div>
             <h3 className="font-display text-xl font-bold mb-4">AI Solutions</h3>
             <p className="text-gray-300">
