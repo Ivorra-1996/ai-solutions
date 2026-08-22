@@ -29,8 +29,8 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: '#0F172A',
-          light: '#1E293B',
+          DEFAULT: '#1C1917',
+          light: '#292524',
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -46,8 +46,8 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: '#5c65c0',
-          light: '#7c84d3',
+          DEFAULT: '#B45309',
+          light: '#D97706',
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
@@ -69,6 +69,10 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      fontFamily: {
+        sans: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       keyframes: {
         "fade-in": {
           "0%": { opacity: "0", transform: "translateY(10px)" },
@@ -77,11 +81,16 @@ export default {
         "slide-in": {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(0)" }
+        },
+        "grid-pan": {
+          "0%": { backgroundPosition: "0px 0px" },
+          "100%": { backgroundPosition: "48px 48px" }
         }
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-out",
         "slide-in": "slide-in 0.5s ease-out",
+        "grid-pan": "grid-pan 40s linear infinite",
       }
     }
   },

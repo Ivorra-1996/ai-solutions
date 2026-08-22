@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">AI Solutions</h3>
+            <h3 className="font-display text-xl font-bold mb-4">AI Solutions</h3>
             <p className="text-gray-300">
               {t('footer.description')}
             </p>

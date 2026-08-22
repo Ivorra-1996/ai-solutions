@@ -2,57 +2,67 @@ import { Brain, Factory, Building } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
+const heroCards = [
+  { icon: Brain, titleKey: 'hero.cards.ai.title', descriptionKey: 'hero.cards.ai.description' },
+  { icon: Factory, titleKey: 'hero.cards.industry.title', descriptionKey: 'hero.cards.industry.description' },
+  { icon: Building, titleKey: 'hero.cards.construction.title', descriptionKey: 'hero.cards.construction.description' },
+] as const;
+
 const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="relative bg-gradient-to-br from-primary to-primary-light text-white pt-24 pb-16">
+    <div className="relative bg-primary text-white pt-24 pb-16 overflow-hidden">
       <div
-        className="absolute inset-0 z-0 opacity-20"
+        className="absolute inset-0 z-0 opacity-[0.08] animate-grid-pan motion-reduce:animate-none"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1600&q=60)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage:
+            'linear-gradient(rgba(217,119,6,1) 1px, transparent 1px), linear-gradient(90deg, rgba(217,119,6,1) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
         }}
       />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
               {t('hero.title')}
             </h1>
             <p className="text-lg text-gray-300 mb-8">
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent-light text-white">
+              <Button
+                asChild
+                size="lg"
+                className="bg-accent hover:bg-accent-light text-white transition-all hover:-translate-y-0.5"
+              >
                 <a href="#services">{t('hero.cta1')}</a>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white text-white bg-transparent hover:bg-white hover:text-primary"
+                className="border-white text-white bg-transparent hover:bg-white hover:text-primary transition-all hover:-translate-y-0.5"
               >
                 <a href="#contact">{t('hero.cta2')}</a>
               </Button>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-6 animate-fade-in">
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Brain className="w-12 h-12 mb-4 text-accent" />
-              <h3 className="text-xl font-semibold mb-2">{t('hero.cards.ai.title')}</h3>
-              <p className="text-gray-300">{t('hero.cards.ai.description')}</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Factory className="w-12 h-12 mb-4 text-accent" />
-              <h3 className="text-xl font-semibold mb-2">{t('hero.cards.industry.title')}</h3>
-              <p className="text-gray-300">{t('hero.cards.industry.description')}</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <Building className="w-12 h-12 mb-4 text-accent" />
-              <h3 className="text-xl font-semibold mb-2">{t('hero.cards.construction.title')}</h3>
-              <p className="text-gray-300">{t('hero.cards.construction.description')}</p>
+          <div className="relative animate-fade-in">
+            <span className="absolute -top-px -left-px h-4 w-4 border-t-2 border-l-2 border-accent" />
+            <span className="absolute -top-px -right-px h-4 w-4 border-t-2 border-r-2 border-accent" />
+            <span className="absolute -bottom-px -left-px h-4 w-4 border-b-2 border-l-2 border-accent" />
+            <span className="absolute -bottom-px -right-px h-4 w-4 border-b-2 border-r-2 border-accent" />
+            <div className="border border-white/20 bg-white/[0.03] divide-y divide-white/10">
+              {heroCards.map(({ icon: Icon, titleKey, descriptionKey }) => (
+                <div key={titleKey} className="flex items-start gap-4 p-6">
+                  <Icon className="w-8 h-8 shrink-0 text-accent" />
+                  <div>
+                    <h3 className="font-display text-lg font-semibold mb-1">{t(titleKey)}</h3>
+                    <p className="text-gray-300 text-sm">{t(descriptionKey)}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -7,6 +7,8 @@ import { CONTACT_EMAIL } from '../../config/contact';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useInView } from '@/hooks/use-in-view';
+import { cn } from '@/lib/utils';
 import {
   Form,
   FormControl,
@@ -19,6 +21,7 @@ import {
 const Contact = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   const contactSchema = z.object({
     name: z.string().trim().min(1, t('contact.errors.nameRequired')),
@@ -46,10 +49,15 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" className="py-16 bg-white">
+    <div id="contact" ref={ref} className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8 text-primary">{t('contact.title')}</h2>
+        <div
+          className={cn(
+            'max-w-2xl mx-auto',
+            inView ? 'animate-fade-in' : 'opacity-0'
+          )}
+        >
+          <h2 className="font-display text-3xl font-bold text-center mb-8 text-primary">{t('contact.title')}</h2>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -94,7 +102,7 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={form.formState.isSubmitting}
-                className="w-full bg-accent hover:bg-accent-light text-white"
+                className="w-full bg-accent hover:bg-accent-light text-white transition-all hover:-translate-y-0.5"
               >
                 {t('contact.submit')}
               </Button>
