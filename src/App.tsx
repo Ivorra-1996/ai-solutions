@@ -10,8 +10,15 @@ import ProjectsPage from "./pages/Projects";
 import BlogPage from "./pages/Blog";
 import ContactPage from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import CookieConsent from "./components/layout/CookieConsent";
+import { useAnalyticsPageview } from "./hooks/use-analytics";
 
 const queryClient = new QueryClient();
+
+const AnalyticsTracker = () => {
+  useAnalyticsPageview();
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -20,6 +27,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AnalyticsTracker />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<ServicesPage />} />
@@ -28,6 +36,7 @@ const App = () => (
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>

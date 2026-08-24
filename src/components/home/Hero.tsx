@@ -24,7 +24,7 @@ const Hero = () => {
           backgroundSize: '48px 48px',
         }}
       />
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-x-0 top-0 h-[560px] max-h-full z-0">
         <Suspense fallback={null}>
           <HeroScene />
         </Suspense>

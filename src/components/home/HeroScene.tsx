@@ -2,7 +2,12 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const NODE_COUNT = 100;
+// Calibrated so a typical desktop hero (~100 nodes) looks right; actual
+// count scales with the visible 3D volume so narrow/short viewports
+// (mobile) don't cram the same node count into a much smaller space.
+const TARGET_DENSITY = 0.2566;
+const MIN_NODES = 24;
+const MAX_NODES = 110;
 const CONNECT_DISTANCE = 1.4;
 const MAX_PULSES = 35;
 const NODE_COLOR = '#D97706';
@@ -100,7 +105,12 @@ function NodeNetwork({ reduceMotion }: { reduceMotion: boolean }) {
       y: Math.max((viewport.height * 0.85) / 2, 2.2),
       z: 2.6,
     };
-    return generateNetwork(NODE_COUNT, bounds, CONNECT_DISTANCE);
+    const volume = 8 * bounds.x * bounds.y * bounds.z;
+    const nodeCount = Math.min(
+      MAX_NODES,
+      Math.max(MIN_NODES, Math.round(volume * TARGET_DENSITY))
+    );
+    return generateNetwork(nodeCount, bounds, CONNECT_DISTANCE);
   }, [viewport.width, viewport.height]);
 
   useEffect(() => {

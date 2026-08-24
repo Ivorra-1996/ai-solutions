@@ -35,6 +35,7 @@ El sitio queda disponible en `http://localhost:8080`.
 - **React Router** para el ruteo (`/`, `/services`, `/projects`, `/blog`, `/contact`)
 - **react-hook-form** + **zod** para la validación del formulario de contacto
 - i18n propio (español/inglés) vía Context de React — sin librería externa
+- **three.js** + **@react-three/fiber** para la escena 3D del Hero (código-dividida con `lazy`, solo se descarga en `/`)
 
 ## Estructura
 
@@ -50,6 +51,14 @@ src/
 ├── pages/          # Una por ruta
 └── utils/          # translations.ts con los textos en español e inglés
 ```
+
+## Deploy
+
+El repo está conectado a GitHub (`Ivorra-1996/ai-solutions`) y pensado para desplegarse en [Vercel](https://vercel.com):
+
+1. En Vercel, "Add New Project" → importar el repo de GitHub. Detecta Vite automáticamente (build command, output y el gestor de paquetes por el `yarn.lock`).
+2. `vercel.json` ya incluye el rewrite necesario para que las rutas de React Router (`/services`, `/projects`, etc.) funcionen al entrar directo o refrescar, no solo navegando desde `/`.
+3. No hay variables de entorno que configurar por ahora (no hay backend ni claves de API en el proyecto).
 
 ## Notas
 

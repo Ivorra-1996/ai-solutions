@@ -119,6 +119,11 @@ export const translations = {
     },
     contactPage: {
       intro: "¿Tenés un proyecto en mente? Contanos y te respondemos a la brevedad."
+    },
+    cookieConsent: {
+      message: "Usamos cookies de analítica para entender cómo se usa el sitio. Podés aceptar o rechazar.",
+      accept: "Aceptar",
+      reject: "Rechazar"
     }
   },
   en: {
@@ -241,6 +246,11 @@ export const translations = {
     },
     contactPage: {
       intro: "Have a project in mind? Tell us about it and we'll get back to you shortly."
+    },
+    cookieConsent: {
+      message: "We use analytics cookies to understand how the site is used. You can accept or decline.",
+      accept: "Accept",
+      reject: "Decline"
     }
   }
 };
