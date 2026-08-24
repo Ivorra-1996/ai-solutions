@@ -1,6 +1,9 @@
+import { lazy, Suspense } from 'react';
 import { Brain, Factory, Building } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+
+const HeroScene = lazy(() => import('./HeroScene'));
 
 const heroCards = [
   { icon: Brain, titleKey: 'hero.cards.ai.title', descriptionKey: 'hero.cards.ai.description' },
@@ -14,13 +17,18 @@ const Hero = () => {
   return (
     <div className="relative bg-primary text-white pt-24 pb-16 overflow-hidden">
       <div
-        className="absolute inset-0 z-0 opacity-[0.08] animate-grid-pan motion-reduce:animate-none"
+        className="absolute inset-0 z-0 opacity-[0.06] animate-grid-pan motion-reduce:animate-none"
         style={{
           backgroundImage:
             'linear-gradient(rgba(217,119,6,1) 1px, transparent 1px), linear-gradient(90deg, rgba(217,119,6,1) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
         }}
       />
+      <div className="absolute inset-0 z-0">
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
+      </div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-left">

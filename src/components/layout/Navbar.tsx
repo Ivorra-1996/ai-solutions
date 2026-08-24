@@ -39,7 +39,7 @@ const Navbar = () => {
               <Link
                 key={to}
                 to={to}
-                className="text-gray-700 hover:text-accent transition-colors"
+                className="text-gray-700 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
               >
                 {t(labelKey)}
               </Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
             <button
               onClick={toggleLanguage}
               aria-label={t('nav.toggleLanguage')}
-              className="flex items-center text-gray-700 hover:text-accent transition-colors"
+              className="flex items-center text-gray-700 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
             >
               <Globe className="w-5 h-5 mr-1" />
               {language.toUpperCase()}
@@ -55,7 +55,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden text-gray-700"
+            className="md:hidden text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? t('nav.closeMenu') : t('nav.openMenu')}
             aria-expanded={isOpen}
@@ -72,7 +72,7 @@ const Navbar = () => {
                   key={to}
                   to={to}
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-700 hover:text-accent transition-colors"
+                  className="text-gray-700 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
                 >
                   {t(labelKey)}
                 </Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
               <button
                 onClick={toggleLanguage}
                 aria-label={t('nav.toggleLanguage')}
-                className="flex items-center text-gray-700 hover:text-accent transition-colors"
+                className="flex items-center text-gray-700 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm"
               >
                 <Globe className="w-5 h-5 mr-1" />
                 {language.toUpperCase()}

@@ -25,7 +25,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {navLinks.map(({ to, labelKey }) => (
                 <li key={to}>
-                  <Link to={to} className="text-gray-300 hover:text-accent transition-colors">
+                  <Link to={to} className="text-gray-300 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
                     {t(labelKey)}
                   </Link>
                 </li>
@@ -43,16 +43,16 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">{t('footer.followUs')}</h4>
             <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="Facebook" className="text-gray-300 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" aria-label="Twitter" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="Twitter" className="text-gray-300 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" aria-label="LinkedIn" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="LinkedIn" className="text-gray-300 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="#" aria-label="Instagram" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="Instagram" className="text-gray-300 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm">
                 <Instagram className="w-6 h-6" />
               </a>
             </div>
