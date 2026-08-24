@@ -46,6 +46,7 @@ const Navbar = () => {
             ))}
             <button
               onClick={toggleLanguage}
+              aria-label={t('nav.toggleLanguage')}
               className="flex items-center text-gray-700 hover:text-accent transition-colors"
             >
               <Globe className="w-5 h-5 mr-1" />
@@ -56,6 +57,8 @@ const Navbar = () => {
           <button
             className="md:hidden text-gray-700"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -76,6 +79,7 @@ const Navbar = () => {
               ))}
               <button
                 onClick={toggleLanguage}
+                aria-label={t('nav.toggleLanguage')}
                 className="flex items-center text-gray-700 hover:text-accent transition-colors"
               >
                 <Globe className="w-5 h-5 mr-1" />

@@ -43,16 +43,16 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">{t('footer.followUs')}</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="Facebook" className="text-gray-300 hover:text-accent transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="Twitter" className="text-gray-300 hover:text-accent transition-colors">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="LinkedIn" className="text-gray-300 hover:text-accent transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-accent transition-colors">
+              <a href="#" aria-label="Instagram" className="text-gray-300 hover:text-accent transition-colors">
                 <Instagram className="w-6 h-6" />
               </a>
             </div>

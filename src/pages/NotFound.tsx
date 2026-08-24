@@ -2,11 +2,13 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Compass } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { usePageMeta } from "../hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
   const location = useLocation();
   const { t } = useLanguage();
+  usePageMeta(`${t('notFound.title')} | AI Solutions`, t('notFound.message'));
 
   useEffect(() => {
     console.error(

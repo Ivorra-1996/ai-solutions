@@ -18,7 +18,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-const Contact = () => {
+interface ContactProps {
+  showHeading?: boolean;
+}
+
+const Contact = ({ showHeading = true }: ContactProps) => {
   const { toast } = useToast();
   const { t } = useLanguage();
   const { ref, inView } = useInView<HTMLDivElement>();
@@ -57,7 +61,11 @@ const Contact = () => {
             inView ? 'animate-fade-in' : 'opacity-0'
           )}
         >
-          <h2 className="font-display text-3xl font-bold text-center mb-8 text-primary">{t('contact.title')}</h2>
+          {showHeading && (
+            <h2 className="font-display text-3xl font-bold text-center mb-8 text-primary">
+              {t('contact.title')}
+            </h2>
+          )}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
